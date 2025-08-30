@@ -1,25 +1,30 @@
 @import "tailwindcss";
 
 * {
-  margin: 0px;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 /* ---------- Navbar ---------- */
 .logo {
-  height: 5vh;
-  margin-top: 15px;
+  height: 40px;
+  margin-top: 10px;
 }
 
 .bg {
   background-image: url("https://ik.imagekit.io/ir3rmu42h/Image.png?updatedAt=1752639047125");
   height: 80vh;
   background-size: cover;
+  background-position: center;
 }
 
 .navbar {
   background: rgba(0, 0, 0, 0.6);
   height: 10vh;
-  width: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
 }
 
 .active-tab {
@@ -45,67 +50,71 @@
 
 .completenav {
   display: flex;
-  height: auto;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   color: aliceblue;
 }
 
 .flex {
   display: flex;
   gap: 20px;
-  margin-top: 20px;
 }
 
 .flex1 {
   display: flex;
-  margin-left: auto;
-  margin-right: 10%;
+  align-items: center;
+  gap: 15px;
 }
 
 .icon {
-  height: 4vh;
+  height: 24px;
   color: white;
-  margin: 19px;
+  cursor: pointer;
 }
 
 .profileicon {
-  height: 5vh;
-  margin: 15px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 /* ---------- Hero Section ---------- */
 .navheadings {
   color: aliceblue;
-  width: 100vw;
+  width: 100%;
   margin-top: 7%;
   margin-left: 6%;
 }
 
 .superman {
-  font-family: "Roboto";
-  font-weight: 400;
-  font-size: 7vh;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: clamp(24px, 5vw, 56px); /* responsive scaling */
 }
 
 .paragraph {
-  max-width: 40vw;
-  font-family: "Roboto";
+  max-width: 600px;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
+  margin-top: 10px;
+  font-size: clamp(14px, 2vw, 18px);
 }
 
 .navbtn {
   background-color: aliceblue;
   color: black;
-  padding: 5px 10px;
-  width: auto;
-  margin: 10px;
-  border-radius: 5px;
+  padding: 10px 16px;
+  margin: 15px 10px 0 0;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 /* ---------- Movies Section ---------- */
 .movies {
   background: black;
-  height: auto;
   padding-bottom: 4%;
 }
 
@@ -126,27 +135,28 @@
 
 .trendingimgs {
   display: flex;
-  overflow-x: hidden;
+  overflow-x: auto;
   scroll-behavior: smooth;
   gap: 10px;
-  width: 100vw;
-  pointer-events: none;
 }
 
 .trending-img-wrapper {
   flex: 0 0 auto;
-  width: 220px;
+  min-width: 200px;
+  max-width: 250px;
 }
 
 .trendingimg {
-  width: 50vw;
-  height: 300px;
+  width: 100%;
+  height: auto;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .arrow {
   padding: 10px;
   z-index: 2;
+  cursor: pointer;
 }
 
 .arrow-icon {
@@ -162,57 +172,31 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  padding: 40px;
+  padding: 40px 20px;
 }
 
 .popularflex {
-  width: 150px;
-  height: auto;
-}
-
-.icon-1 {
-  height: 4vh;
-  color: white;
-  margin: 19px;
-}
-
-.popularnav {
-  background: rgba(0, 0, 0, 0.9);
-  height: 10vh;
-  width: auto;
-}
-
-.search-input {
-  background-color: aliceblue;
-  color: black;
-  height: 4vh;
-  margin-top: 6%;
-  padding-left: 2%;
+  flex: 1 1 150px;
+  max-width: 200px;
 }
 
 .popularimgs {
-  width: 90vw;
-  height: 300px;
+  width: 100%;
+  height: auto;
   border-radius: 10px;
+  object-fit: cover;
 }
 
-/* ========== RESPONSIVENESS ========== */
+/* ---------- Responsive Media Queries ---------- */
 
 /* Tablets */
 @media (max-width: 1024px) {
-  .superman {
-    font-size: 5vh;
-  }
   .paragraph {
-    max-width: 60vw;
-    font-size: 14px;
+    max-width: 80%;
   }
-  .trendingimg {
-    width: 70vw;
-    height: 250px;
-  }
-  .popularflex {
-    width: 130px;
+  .trending-img-wrapper {
+    min-width: 180px;
+    max-width: 200px;
   }
 }
 
@@ -220,60 +204,40 @@
 @media (max-width: 768px) {
   .completenav {
     flex-direction: column;
-    align-items: center;
-  }
-  .flex {
-    margin-top: 10px;
     gap: 10px;
+    padding: 10px 0;
   }
   .superman {
-    font-size: 4vh;
     text-align: center;
   }
   .paragraph {
-    max-width: 80vw;
     text-align: center;
-    font-size: 13px;
   }
-  .navbtn {
-    width: auto;
-    padding: 8px 12px;
-    font-size: 14px;
-  }
-  .trendingimg {
-    width: 80vw;
-    height: 200px;
-  }
-  .popularflex-wrapper {
-    padding: 20px;
-  }
-  .popularflex {
-    width: 120px;
-  }
-  .popularimgs {
-    width: 95vw;
-    height: 200px;
+  .trending-section {
+    margin: 10px;
   }
 }
 
 /* Small Mobiles */
 @media (max-width: 480px) {
-  .superman {
-    font-size: 3.5vh;
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
   }
-  .paragraph {
-    font-size: 12px;
-    max-width: 90vw;
+  .flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
   }
-  .trendingimg {
-    width: 90vw;
-    height: 180px;
+  .navbtn {
+    width: 100%;
+    max-width: 200px;
+    margin: 5px auto;
+    text-align: center;
   }
   .popularflex {
-    width: 100px;
-  }
-  .popularimgs {
-    width: 100vw;
-    height: 180px;
+    flex: 1 1 100px;
+    max-width: 150px;
   }
 }
