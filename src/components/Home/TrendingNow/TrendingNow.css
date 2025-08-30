@@ -1,0 +1,48 @@
+.trendig {
+    color: aliceblue;
+    margin-left: 4%;
+    font-family: "Roboto";
+    font-size: 20px;
+    padding-top: 30px;
+}
+
+.trending-section {
+    position: relative;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.trendingimgs {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    gap: 10px;
+    width: 100vw;
+    pointer-events: none;
+}
+
+.trending-img-wrapper {
+    flex: 0 0 auto;
+    width: 220px;
+}
+
+.trendingimg {
+    width: 50vw;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.arrow {
+    padding: 10px;
+    z-index: 2;
+}
+
+.arrow-icon {
+    width: 24px;
+    height: 24px;
+    color: white;
+}
+.color{
+    color: aliceblue;
+}

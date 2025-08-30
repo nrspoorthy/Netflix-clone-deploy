@@ -1,0 +1,279 @@
+@import "tailwindcss";
+
+* {
+  margin: 0px;
+}
+
+/* ---------- Navbar ---------- */
+.logo {
+  height: 5vh;
+  margin-top: 15px;
+}
+
+.bg {
+  background-image: url("https://ik.imagekit.io/ir3rmu42h/Image.png?updatedAt=1752639047125");
+  height: 80vh;
+  background-size: cover;
+}
+
+.navbar {
+  background: rgba(0, 0, 0, 0.6);
+  height: 10vh;
+  width: auto;
+}
+
+.active-tab {
+  color: white;
+  font-weight: bold;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.flex h1,
+.flex h2 {
+  margin-right: 20px;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+.flex h1:hover,
+.flex h2:hover {
+  transform: scale(1.05);
+}
+
+.completenav {
+  display: flex;
+  height: auto;
+  color: aliceblue;
+}
+
+.flex {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.flex1 {
+  display: flex;
+  margin-left: auto;
+  margin-right: 10%;
+}
+
+.icon {
+  height: 4vh;
+  color: white;
+  margin: 19px;
+}
+
+.profileicon {
+  height: 5vh;
+  margin: 15px;
+  border-radius: 50%;
+}
+
+/* ---------- Hero Section ---------- */
+.navheadings {
+  color: aliceblue;
+  width: 100vw;
+  margin-top: 7%;
+  margin-left: 6%;
+}
+
+.superman {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 7vh;
+}
+
+.paragraph {
+  max-width: 40vw;
+  font-family: "Roboto";
+  font-weight: 400;
+}
+
+.navbtn {
+  background-color: aliceblue;
+  color: black;
+  padding: 5px 10px;
+  width: auto;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+/* ---------- Movies Section ---------- */
+.movies {
+  background: black;
+  height: auto;
+  padding-bottom: 4%;
+}
+
+.trendig {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-left: 20px;
+  color: white;
+  padding-top: 30px;
+}
+
+.trending-section {
+  position: relative;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.trendingimgs {
+  display: flex;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  gap: 10px;
+  width: 100vw;
+  pointer-events: none;
+}
+
+.trending-img-wrapper {
+  flex: 0 0 auto;
+  width: 220px;
+}
+
+.trendingimg {
+  width: 50vw;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.arrow {
+  padding: 10px;
+  z-index: 2;
+}
+
+.arrow-icon {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+/* ---------- Popular Section ---------- */
+.popularflex-wrapper {
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 40px;
+}
+
+.popularflex {
+  width: 150px;
+  height: auto;
+}
+
+.icon-1 {
+  height: 4vh;
+  color: white;
+  margin: 19px;
+}
+
+.popularnav {
+  background: rgba(0, 0, 0, 0.9);
+  height: 10vh;
+  width: auto;
+}
+
+.search-input {
+  background-color: aliceblue;
+  color: black;
+  height: 4vh;
+  margin-top: 6%;
+  padding-left: 2%;
+}
+
+.popularimgs {
+  width: 90vw;
+  height: 300px;
+  border-radius: 10px;
+}
+
+/* ========== RESPONSIVENESS ========== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .superman {
+    font-size: 5vh;
+  }
+  .paragraph {
+    max-width: 60vw;
+    font-size: 14px;
+  }
+  .trendingimg {
+    width: 70vw;
+    height: 250px;
+  }
+  .popularflex {
+    width: 130px;
+  }
+}
+
+/* Mobiles */
+@media (max-width: 768px) {
+  .completenav {
+    flex-direction: column;
+    align-items: center;
+  }
+  .flex {
+    margin-top: 10px;
+    gap: 10px;
+  }
+  .superman {
+    font-size: 4vh;
+    text-align: center;
+  }
+  .paragraph {
+    max-width: 80vw;
+    text-align: center;
+    font-size: 13px;
+  }
+  .navbtn {
+    width: auto;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  .trendingimg {
+    width: 80vw;
+    height: 200px;
+  }
+  .popularflex-wrapper {
+    padding: 20px;
+  }
+  .popularflex {
+    width: 120px;
+  }
+  .popularimgs {
+    width: 95vw;
+    height: 200px;
+  }
+}
+
+/* Small Mobiles */
+@media (max-width: 480px) {
+  .superman {
+    font-size: 3.5vh;
+  }
+  .paragraph {
+    font-size: 12px;
+    max-width: 90vw;
+  }
+  .trendingimg {
+    width: 90vw;
+    height: 180px;
+  }
+  .popularflex {
+    width: 100px;
+  }
+  .popularimgs {
+    width: 100vw;
+    height: 180px;
+  }
+}

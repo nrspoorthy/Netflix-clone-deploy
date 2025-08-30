@@ -1,0 +1,119 @@
+.movie-details-wrapper {
+  background-color: #121212; /* Slightly darker, cinematic tone */
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.movie-banner {
+  height: 70vh;
+  background-size: cover; /* fills width */
+  background-position: center top; /* focus on important area */
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+
+.movie-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top, 
+    rgba(18, 18, 18, 0.95) 0%, 
+    rgba(18, 18, 18, 0.6) 60%, 
+    transparent 100%
+  );
+}
+
+.movie-banner-content {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  max-width: 600px;
+  z-index: 2;
+}
+
+.movie-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem; /* Slightly larger */
+  font-weight: 300;
+  letter-spacing: 1.2px;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.85);
+}
+
+.movie-meta {
+  margin: 15px 0;
+  font-size: 1.15rem;
+  opacity: 0.9;
+}
+
+.movie-overview {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.movie-play-btn {
+  background: linear-gradient(90deg, #e50914, #f6121d);
+  color: white;
+  padding: 10px 24px;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.movie-play-btn:hover {
+  background: linear-gradient(90deg, #f6121d, #ff1e26);
+  transform: scale(1.05);
+}
+
+.movie-metadata {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 30px 50px;
+  background-color: #1f1f1f;
+}
+
+.movie-metadata div {
+  background: #292929;
+  padding: 15px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.movie-metadata div:hover {
+  transform: translateY(-3px);
+}
+
+.movie-metadata h4 {
+  margin-bottom: 5px;
+  color: #ccc;
+}
+
+.more-like-this-heading {
+  margin: 30px 50px 10px;
+  font-size: 1.8rem;
+}
+
+.similar-movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 0 50px 50px;
+}
+
+.similar-movie-img {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.similar-movie-img:hover {
+  transform: scale(1.08);
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.5);
+}
