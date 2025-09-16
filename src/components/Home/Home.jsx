@@ -3,7 +3,7 @@ import './Home.css';
 import Navbar from '../Navbar/Navbar';
 import TrendingNow from './TrendingNow/TrendingNow';
 import Originals from './Originals/Originals';
-import Popular from '../Popular/popular';
+import Popular from '../Popular/Popular';
 import TopRated from './TopRated/TopRated'
 import Footer from '../Footer/Footer';
 export default function Home() {

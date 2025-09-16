@@ -5,7 +5,7 @@ import {Routes, Route, BrowserRouter} from 'react-router-dom'
 import Home from './components/Home/Home.jsx';
 import MovieDetails from './components/MovieDetails/MovieDetails.jsx';
 import Profile from './components/Profile/Profile.jsx';
-import Popular from './components/Popular/popular.jsx';
+import Popular from './components/Popular/Popular.jsx';
 import SearchResults from './components/SearchResults/SearchResults.jsx';
 
 function App() {
