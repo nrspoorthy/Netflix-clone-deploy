@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import PopularDetails from './populardetails';
+import PopularDetails from './PopularDetails';
 import Navbar from '../Navbar/Navbar';
 import './Popular.css';
 import Footer from '../Footer/Footer';
