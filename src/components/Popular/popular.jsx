@@ -56,7 +56,7 @@ if (loading) {
       {popularimg.map(movie => (
         <PopularDetails key = {movie.id} movie={movie}/>
       ))
-
+      
       }
     </div>
     <Footer/>
