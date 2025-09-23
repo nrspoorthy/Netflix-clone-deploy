@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Navbar from '../Navbar/Navbar';
-import "./MovieDetails.css";
+import '../MovieDetails/MovieDetails.css'
 
 
 export default function MovieDetails() {
