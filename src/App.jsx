@@ -7,6 +7,7 @@ import MovieDetails from './components/MovieDetails/MovieDetails.jsx';
 import Profile from './components/Profile/Profile.jsx';
 import Popular from './components/Popular/Popular.jsx';
 import SearchResults from './components/SearchResults/SearchResults.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 function App() {
   return (
@@ -14,11 +15,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/login' element={<LoginPage/>}></Route>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path = '/popular' element={<Popular />}></Route>
-        <Route path = '/movies/:id' element = {<MovieDetails/>}></Route>
-        <Route path='/account' element={<Profile/>}></Route>
-        <Route path="/search/:searchText" element={<SearchResults />} />
+        <Route path='/' element={<ProtectedRoute><Home/></ProtectedRoute>}></Route>
+        <Route path = '/popular' element={<ProtectedRoute><Popular /></ProtectedRoute>}></Route>
+        <Route path = '/movies/:id' element = {<ProtectedRoute><MovieDetails/></ProtectedRoute>}></Route>
+        <Route path='/account' element={<ProtectedRoute><Profile/></ProtectedRoute>}></Route>
+        <Route path="/search/:searchText" element={<ProtectedRoute><SearchResults /></ProtectedRoute>} />
       </Routes>
     </BrowserRouter>  
     </>

@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
-import Navbar from '../Navbar/Navbar';
-import '../MovieDetails/MovieDetails.css'
-
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import Navbar from "../Navbar/Navbar";
 
 export default function MovieDetails() {
   const { id } = useParams();
@@ -12,12 +10,10 @@ export default function MovieDetails() {
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
-      const jwtToken = Cookies.get('jwt_token');
+      const jwtToken = Cookies.get("jwt_token");
       try {
         const response = await fetch(`https://apis.ccbp.in/movies-app/movies/${id}`, {
-          headers: {
-            Authorization: `Bearer ${jwtToken}`,
-          },
+          headers: { Authorization: `Bearer ${jwtToken}` },
         });
 
         if (response.ok) {
@@ -40,7 +36,7 @@ export default function MovieDetails() {
           setMovie(formattedData);
         }
       } catch (error) {
-        console.error('Network error:', error);
+        console.error("Network error:", error);
       } finally {
         setLoading(false);
       }
@@ -50,69 +46,95 @@ export default function MovieDetails() {
   }, [id]);
 
   if (loading) {
-    return <p className="loading-text">Loading...</p>;
+    return <p className="text-center text-gray-300 text-lg mt-12">Loading...</p>;
   }
 
   return (
-    <div className="movie-details-wrapper">
+    <div className="bg-[#121212] text-white font-sans min-h-screen">
       <Navbar />
 
-      {/* Banner */}
-      <div
-        className="movie-banner"
-        style={{ backgroundImage: `url(${movie.backdrop_path})` }}
-      >
-        <div className="movie-banner-content">
-          <h1 className="movie-title">{movie.title}</h1>
-          <p className="movie-meta">
-            {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m &nbsp;
-            {movie.adult ? 'A' : 'U/A'} &nbsp;
-            {movie.release_date?.split('-')[0]}
+      {/* 🎥 Banner Section */}
+      <div className="relative flex items-end overflow-hidden h-[60vh] md:h-[70vh] lg:h-[75vh]">
+        {/* ✅ Image with object-top prevents top cut */}
+        <img
+          src={movie.backdrop_path}
+          alt={movie.title}
+          className="absolute inset-0 w-full h-full object-cover object-top"
+        />
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#121212]/95 via-[#121212]/60 to-transparent"></div>
+
+        {/* Content */}
+        <div className="relative z-10 px-[5vw] pb-[5vw] max-w-[900px]">
+          <h1 className="font-[Bebas_Neue] text-white font-normal leading-tight text-[clamp(1.8rem,4vw,3.5rem)] drop-shadow-[0_4px_15px_rgba(0,0,0,0.85)]">
+            {movie.title}
+          </h1>
+
+          <p className="mt-2 text-[clamp(0.9rem,1.5vw,1.2rem)] opacity-90">
+            {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m &nbsp;•&nbsp;
+            {movie.adult ? "A" : "U/A"} &nbsp;•&nbsp;
+            {movie.release_date?.split("-")[0]}
           </p>
-          <p className="movie-overview">{movie.overview}</p>
-          <button className="movie-play-btn">Play</button>
+
+          <p className="mb-5 mt-3 leading-relaxed text-[clamp(0.85rem,1.2vw,1rem)] max-w-[800px] hidden sm:block">
+            {movie.overview}
+          </p>
+
+          <button className="bg-gradient-to-r from-[#e50914] to-[#f6121d] text-white px-7 py-3 font-bold text-[clamp(0.9rem,1vw,1rem)] rounded-md transition duration-300 ease-in-out hover:from-[#f6121d] hover:to-[#ff1e26] hover:scale-105">
+            Play
+          </button>
         </div>
       </div>
 
-      {/* Movie Info */}
-      <div className="movie-metadata">
-        <div>
-          <h4>Genres</h4>
-          <p>{movie.genres?.map((g) => g.name).join('\n')}</p>
+      {/* 📝 Metadata Section — always 2 columns (2x2 grid) */}
+      <div className="grid grid-cols-2 gap-5 p-[5vw] bg-[#1f1f1f]">
+        <div className="bg-[#292929] p-4 rounded-lg transition-transform duration-300 hover:-translate-y-1">
+          <h4 className="text-[#ccc] text-[clamp(0.9rem,1vw,1.1rem)] mb-1">Genres</h4>
+          <p className="text-sm whitespace-pre-line">
+            {movie.genres?.map((g) => g.name).join("\n")}
+          </p>
         </div>
-        <div>
-          <h4>Audio Available</h4>
-          <p>{movie.audio?.map((a) => a.english_name).join('\n')}</p>
+
+        <div className="bg-[#292929] p-4 rounded-lg transition-transform duration-300 hover:-translate-y-1">
+          <h4 className="text-[#ccc] text-[clamp(0.9rem,1vw,1.1rem)] mb-1">Audio Available</h4>
+          <p className="text-sm whitespace-pre-line">
+            {movie.audio?.map((a) => a.english_name).join("\n")}
+          </p>
         </div>
-        <div>
-          <h4>Rating Count</h4>
-          <p>{movie.rating_count}</p>
-          <h4>Rating Average</h4>
-          <p>{movie.rating_average}</p>
+
+        <div className="bg-[#292929] p-4 rounded-lg transition-transform duration-300 hover:-translate-y-1">
+          <h4 className="text-[#ccc] text-[clamp(0.9rem,1vw,1.1rem)] mb-1">Ratings</h4>
+          <p className="text-sm">Count: {movie.rating_count}</p>
+          <p className="text-sm">Average: {movie.rating_average}</p>
         </div>
-        <div>
-          <h4>Budget</h4>
-          <p>{movie.budget} Crores</p>
-          <h4>Release Date</h4>
-          <p>
-            {new Date(movie.release_date).toLocaleDateString('en-GB', {
-              day: 'numeric',
-              month: 'long',
-              year: 'numeric',
+
+        <div className="bg-[#292929] p-4 rounded-lg transition-transform duration-300 hover:-translate-y-1">
+          <h4 className="text-[#ccc] text-[clamp(0.9rem,1vw,1.1rem)] mb-1">Budget</h4>
+          <p className="text-sm mb-2">{movie.budget} Crores</p>
+          <h4 className="text-[#ccc] text-[clamp(0.9rem,1vw,1.1rem)] mb-1">Release Date</h4>
+          <p className="text-sm">
+            {new Date(movie.release_date).toLocaleDateString("en-GB", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
             })}
           </p>
         </div>
       </div>
 
-      {/* Similar Movies */}
-      <h2 className="more-like-this-heading">More like this</h2>
-      <div className="similar-movies-grid">
+      {/* 🎞 Similar Movies */}
+      <h2 className="mt-8 mb-4 text-[clamp(1.3rem,2vw,1.8rem)] px-[5vw] font-semibold">
+        More like this
+      </h2>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 px-[5vw] pb-12">
         {movie.similar_movies?.map((similar) => (
           <Link to={`/movies/${similar.id}`} key={similar.id}>
             <img
               src={similar.poster_path}
               alt={similar.title}
-              className="similar-movie-img"
+              className="w-full rounded-lg transition-transform duration-300 hover:scale-[1.08] hover:shadow-[0_6px_18px_rgba(0,0,0,0.5)] object-cover"
             />
           </Link>
         ))}
