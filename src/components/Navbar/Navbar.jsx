@@ -8,6 +8,7 @@ export default function Navbar({ activeTab, setActiveTab, showSearch, setShowSea
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const overlayRef = useRef();
+  const mobileMenuRef = useRef();
 
   // Initialize AOS
   useEffect(() => {
@@ -32,10 +33,13 @@ export default function Navbar({ activeTab, setActiveTab, showSearch, setShowSea
     if (overlayRef.current && !overlayRef.current.contains(e.target)) {
       setShowSearch(false);
     }
+    if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target)) {
+      setMobileMenuOpen(false);
+    }
   };
 
   useEffect(() => {
-    if (showSearch) {
+    if (showSearch || mobileMenuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -44,18 +48,19 @@ export default function Navbar({ activeTab, setActiveTab, showSearch, setShowSea
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [showSearch]);
+  }, [showSearch, mobileMenuOpen]);
 
   return (
     <>
       <nav className="bg-[rgba(0,0,0,0.6)] h-[10vh] w-full flex items-center px-[5%] z-40 relative">
         <div className="flex items-center justify-between w-full text-white">
-          {/* Logo */}
-          <img
-            src="https://ik.imagekit.io/ir3rmu42h/Group%207399.png?updatedAt=1752587169253"
-            className="h-10 mt-2"
-            alt="logo"
-          />
+          <Link to="/">
+            <img
+              src="https://ik.imagekit.io/ir3rmu42h/Group%207399.png?updatedAt=1752587169253"
+              className="h-10 mt-2"
+              alt="logo"
+            />
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-4">
@@ -101,6 +106,7 @@ export default function Navbar({ activeTab, setActiveTab, showSearch, setShowSea
 
           {/* Mobile Menu */}
           <div className="md:hidden flex items-center gap-3">
+            {/* Search Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -115,27 +121,34 @@ export default function Navbar({ activeTab, setActiveTab, showSearch, setShowSea
               />
             </svg>
 
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle menu">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6 text-white"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
-            </button>
+            {/* Hamburger Button: only show when menu is closed */}
+            {!mobileMenuOpen && (
+              <button onClick={() => setMobileMenuOpen(true)} aria-label="Toggle menu">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 text-white"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+              </button>
+            )}
           </div>
         </div>
 
+        {/* Mobile Menu Options */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-[rgba(0,0,0,0.9)] mt-9 w-full px-5 py-3 flex flex-col gap-3 text-white">
+          <div
+            ref={mobileMenuRef}
+            className="md:hidden bg-[rgba(0,0,0,0.9)] mt-9 w-full px-5 py-3 flex flex-col gap-3 text-white"
+          >
             <Link
               to="/"
               className={`${activeTab === 'home' ? 'font-bold' : ''}`}
@@ -178,7 +191,6 @@ export default function Navbar({ activeTab, setActiveTab, showSearch, setShowSea
             </div>
           </div>
         )}
-
       </nav>
     </>
   );

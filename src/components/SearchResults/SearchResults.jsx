@@ -7,6 +7,7 @@ export default function SearchResults() {
   const { searchText } = useParams();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {
     const fetchSearchResults = async () => {
@@ -47,7 +48,11 @@ export default function SearchResults() {
 
   return (
     <div className="bg-black/95 min-h-screen">
-      <Navbar />
+       <Navbar
+                   
+                    showSearch={showSearch}
+                    setShowSearch={setShowSearch}
+                  />
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 p-4 sm:p-6">
         {movies.length > 0 ? (
           movies.map((movie) => (

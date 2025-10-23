@@ -7,9 +7,11 @@ export default function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(true);
+  const [showSearch, setShowSearch] = useState(false);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
+      setLoading(true); // show loader on every new movie
       const jwtToken = Cookies.get("jwt_token");
       try {
         const response = await fetch(`https://apis.ccbp.in/movies-app/movies/${id}`, {
@@ -39,6 +41,8 @@ export default function MovieDetails() {
         console.error("Network error:", error);
       } finally {
         setLoading(false);
+        // scroll to top whenever a new movie loads
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     };
 
@@ -51,11 +55,9 @@ export default function MovieDetails() {
 
   return (
     <div className="bg-[#121212] text-white font-sans min-h-screen">
-      <Navbar />
+      <Navbar showSearch={showSearch} setShowSearch={setShowSearch} />
 
-      {/* 🎥 Banner Section */}
       <div className="relative flex items-end overflow-hidden h-[60vh] md:h-[70vh] lg:h-[75vh]">
-        {/* ✅ Image with object-top prevents top cut */}
         <img
           src={movie.backdrop_path}
           alt={movie.title}
@@ -87,7 +89,7 @@ export default function MovieDetails() {
         </div>
       </div>
 
-      {/* 📝 Metadata Section — always 2 columns (2x2 grid) */}
+      {/* Metadata Section */}
       <div className="grid grid-cols-2 gap-5 p-[5vw] bg-[#1f1f1f]">
         <div className="bg-[#292929] p-4 rounded-lg transition-transform duration-300 hover:-translate-y-1">
           <h4 className="text-[#ccc] text-[clamp(0.9rem,1vw,1.1rem)] mb-1">Genres</h4>
@@ -123,7 +125,7 @@ export default function MovieDetails() {
         </div>
       </div>
 
-      {/* 🎞 Similar Movies */}
+      {/* Similar Movies */}
       <h2 className="mt-8 mb-4 text-[clamp(1.3rem,2vw,1.8rem)] px-[5vw] font-semibold">
         More like this
       </h2>
